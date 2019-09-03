@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Traveling</title>
+</head>
+<body>
+    
+<script>
+
+var tigger = { character: "Tigger", 
+            greet: function(){
+                console.log("The wonderful thing about Tiggers is Tiggers are wonderful things!");
+            }};
+             
+var pooh = { character: "Winnie the Pooh",greet: function(){
+            console.log("Would you like some honey?");
+            } };
+            
+var piglet = { character: "Piglet" };
+var bees = { character: "Bees" };
+var robin = { character: "Christopher Robin" };
+var owl = { character: "Owl" };
+var rabbit = { character: "Rabbit" };
+var gopher = { character: "Gopher" };
+var kanga = { character: "Kanga" };
+var eeyore = { character: "Eeyore" };
+var heffa = { character: "Heffalumps" };
+
+tigger.north = pooh;
+
+pooh.south = tigger;
+pooh.west = piglet;
+pooh.east = bees;
+pooh.north = robin;
+
+piglet.east = pooh;
+piglet.north = owl;
+
+bees.west = pooh;
+bees.north = rabbit;
+
+robin.south = pooh;
+robin.west = owl;
+robin.east = rabbit;
+robin.north = kanga;
+
+owl.south = piglet;
+owl.east = robin;
+
+rabbit.south = bees;
+rabbit.west = robin;
+rabbit.east = gopher;
+
+gopher.west = rabbit;
+
+kanga.south = robin;
+kanga.north = eeyore;
+
+eeyore.south = kanga;
+eeyore.east = heffa;
+
+heffa.west = eeyore;
+
+var player = {
+    location: tigger,
+    honey: false,
+}
+
+function move(dir){
+    if(dir == "north" || dir == "North"){
+        if(player.location.north == null){
+            console.log("You tried to head North, but the path is blocked.")
+        }
+        else {
+            player.location = player.location.north;
+            console.log("You head North and arrive at " + player.location.character + "'s house!");
+            player.location.greet();
+        }
+    }
+    if(dir == "south" || dir == "South"){
+        if(player.location.south == null){
+            console.log("You tried to head South, but the path is blocked.")
+        }
+        else {
+            player.location = player.location.south;
+            console.log("You head South and arrive at " + player.location.character + "'s house!");
+            player.location.greet();
+        }
+    }
+    if(dir == "east" || dir == "East"){
+        if(player.location.east == null){
+            console.log("You tried to head East, but the path is blocked.")
+        }
+        else {
+            player.location = player.location.east;
+            console.log("You head East and arrive at " + player.location.character + "'s house!");
+            player.location.greet();
+        }
+    }
+    if(dir == "west" || dir == "West"){
+        if(player.location.west == null){
+            console.log("You tried to head West, but the path is blocked.")
+        }
+        else {
+            player.location = player.location.west;
+            console.log("You head West and arrive at " + player.location.character + "'s house!");
+            player.location.greet();
+        }
+    }
+}
+
+function pickUp(){
+    if(player.location ==bees){
+        player.honey = true;
+        console.log("You collected some fresh honey from the bees!")
+    }
+    else{
+        console.log("There is no honey here")
+    }
+}
+
+function mission(){
+    charList = [tigger, pooh, piglet, robin, Owl, Rabbit]
+    var ran = Math.floor(Math.random()*Math.floor(charList.length));
+    hungry = charList[rand];
+    hungry.objective = true;
+    console.log( hungry.character + "is in need of some honey")
+}
+ function drop(){
+     if(player.location.objective == true){
+         console.log(player.location.character + "got their honey")
+     }
+     else{
+         console.log("Nobody here ordered that!")
+     }
+ }
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
